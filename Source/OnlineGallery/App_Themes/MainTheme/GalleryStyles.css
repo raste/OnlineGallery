@@ -1,0 +1,350 @@
+﻿body
+{
+	color:#DFDFDF;
+	
+	background-image:url('../../images/background.jpg');
+	background-repeat:repeat;
+}
+
+div.mainDiv
+{
+	border-left-style:solid;
+	border-right-style:solid;
+	border-bottom-style:solid;
+	
+	border-left-width:5px;
+	border-right-width:5px;
+	border-bottom-width:5px;
+	
+	border-left-color:Black;
+	border-right-color:Black;
+	border-bottom-color:Black;
+	
+	min-width:1000px; 
+	width:1000px;
+	
+	
+	text-align:left;
+	
+	/*
+	background-color: #ffffff;
+          filter:alpha(opacity=80);
+          opacity:0.8;
+          -moz-opacity:0.8;
+          -khtml-opacity: 0.8;
+*/
+
+	/*background-color:#2A2A2A;*/
+	
+	/*#1E1E1E;*/
+}
+
+div.whole
+{
+	width:100%; 
+	/*text-align:center;*/
+	
+	background-image:url('../../images/background.jpg');
+	background-repeat:repeat;
+
+}
+
+.autoWidth
+{
+	width:auto;
+}
+
+.Avatar
+{
+	margin:5px;
+}
+
+.galleryImage
+{
+	 margin:2px;
+}
+
+.albumImages
+{
+	display:block;
+}
+
+.marginsBottom
+{
+	margin-bottom:2px;
+}
+
+.marginsTop
+{
+	margin-top:2px;
+}
+
+.paddingTB
+{
+	padding-bottom:5px;
+	padding-top:5px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.marginsTB
+{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.marginsLR
+{
+	margin-left:5px;
+	margin-right:5px;
+}
+
+.accordionHeader
+{
+	text-align:center;
+	cursor:pointer;
+}
+
+.errorLabels
+{
+	color:Red;
+}
+
+.notificationDivs
+{
+	text-align:center;
+	margin-top:5px;
+	margin-bottom:5px;
+	
+	color:#FF9933;
+	font-size:large;
+}
+
+.loginBoxes
+{
+	margin-top:1px;
+	margin-bottom:1px;
+}
+
+a.headerLinks
+{
+	margin-left:3px;
+	margin-right:3px;
+	
+	font-weight:bold;
+	color:#F07800;
+}
+
+a.headerLinks:visited
+{
+	color:#F07800;
+}
+
+a.headerLinks:hover
+{
+	color:White;
+}
+
+/*------------------*/
+
+a
+{
+	font-size:larger;
+	color:#339933;
+	text-decoration:none;
+}
+
+a:visited
+{
+	font-size:larger;
+	color:#339933;
+    text-decoration:none;
+}
+
+a:hover
+{
+	font-size:larger;
+	color:Red;
+}
+
+/*------------------*/
+
+a.register
+{
+	font-size:15px;
+	color:#339933;
+}
+
+a.register:visited
+{
+	color:#339933;
+}
+
+a.register:hover
+{
+	color:Red;
+}
+
+/*--------------------*/
+
+a.cat
+{
+	font-size:medium;
+	color:#339933;
+	text-decoration:none;
+}
+
+a.cat:visited
+{
+	font-size:medium;
+	color:#339933;
+	text-decoration:none;
+}
+
+a.cat:hover
+{
+	font-size:medium;
+	color:Red;
+}
+
+.headerTable
+{
+	width:100%;
+	
+	background-image:url('../../images/logo.png');
+	background-repeat:no-repeat;
+	
+	border-collapse:collapse;
+	
+}
+
+.bottomMargin
+{
+	padding-bottom:5px;
+}
+
+.buttons   /*Used for buttons*/
+{
+	height:22px;	
+	font-size:100% !important;
+	font-weight:bold;
+	font-family:Arial,"Trebuchet MS","Times New Roman";
+	margin:0px;
+}
+
+.insideDiv
+{
+	width:auto;
+	border:solid 1px #8D8D8D;
+	/*background-color:White;*/
+	padding:1px;
+}
+
+.outsideDiv
+{
+	width:176px;
+	
+	border:solid 1px #8D8D8D;
+	padding:3px;
+	
+	background-image:url('../../images/background.jpg');
+	background-repeat:repeat;
+}
+
+.imageDiv
+{
+	width:auto;
+	
+	border:solid 1px #8D8D8D;
+	padding:6px;
+	
+	background-image:url('../../images/background.jpg');
+	background-repeat:repeat;
+}
+
+.commentTableStyle
+{
+	width:100%;
+	border: solid 2px Black; /*#8D8D8D;*/
+	margin-top:2px;
+	margin-bottom:2px;
+}
+
+.imageBackground
+{
+	background-image:url('../../images/background.jpg');
+	background-repeat:repeat;
+}
+
+.commentsTableAvatarCell
+{
+	background-image:url('../../images/background.jpg');
+	background-repeat:repeat;
+	padding:3px;
+}
+
+.menuBgr
+{
+	background-image:url('../../images/menuBgr.bmp');
+	background-repeat:repeat-y;
+}
+
+.loginPanel
+{
+	padding:1px;
+}
+
+.userInfo
+{
+	background-image:url('../../images/userInfo.bmp');
+	background-repeat:repeat-y;
+}
+
+.statisticsTable
+{
+	margin-top:3px;
+	display:inline-table;
+	border-collapse:collapse;
+	width:auto;
+	vertical-align: bottom;
+}
+
+.padding
+{
+	padding:2px;
+}
+
+.registerImage
+{
+	background-image:url('../../images/user_add.png');
+	background-position:right bottom;
+	background-repeat:no-repeat;
+}
+
+.editUser
+{
+	background-image:url('../../images/edit.png');
+	background-position:left bottom;
+	background-repeat:no-repeat;
+}
+
+.editCategory
+{
+	background-image:url('../../images/editCategory.png');
+	background-position:right top;
+	background-repeat:no-repeat;
+}
+
+.madeByPanel
+{
+	margin-bottom:5px;
+	min-width:1000px; 
+	width:1000px;
+}
+
+.rightBgr
+{
+	background-image:url('../../images/rightBgr.bmp');
+	background-position:right top;
+	background-repeat:repeat-y;
+}

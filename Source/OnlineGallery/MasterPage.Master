@@ -1,0 +1,188 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="OnlineGallery.MasterPage" %>
+
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <link rel="stylesheet" type="text/css" href="App_Themes/MainTheme/GalleryStyles.css" />
+    
+    </head>
+<body>
+    <form id="form1" runat="server">
+    
+    
+    <div class="whole" align="center">
+    
+    <div class="mainDiv">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <table class="headerTable">
+            <tr>
+                <td valign="top" height="125px" style="width: 753px">
+                    &nbsp;</td>
+                <td valign="top" align="right" style="width: 240px;">
+        <asp:Panel ID="pnlLogIn" runat="server" CssClass="loginPanel" Height="86px">
+            потребител :
+            <asp:TextBox ID="tbUsername" runat="server" ValidationGroup="1" Width="125px" 
+                CssClass="loginBoxes"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvUSername" runat="server" 
+                ControlToValidate="tbUsername" ErrorMessage="*" ValidationGroup="1"></asp:RequiredFieldValidator>
+            <br />
+             парола :
+            <asp:TextBox ID="tbPassword" runat="server" TextMode="Password" 
+                ValidationGroup="1" Width="125px" CssClass="loginBoxes"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvPassword" runat="server" 
+                ControlToValidate="tbPassword" ErrorMessage="*" ValidationGroup="1"></asp:RequiredFieldValidator>
+            <br />
+            <asp:HyperLink ID="hlRegister" runat="server" CssClass="register" 
+                NavigateUrl="~/Register.aspx">регистрация</asp:HyperLink> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <asp:Button ID="btnLogIN" runat="server" Text="Влез" onclick="btnLogIN_Click" 
+                ValidationGroup="1" /> 
+                &nbsp;&nbsp;
+        </asp:Panel>
+          <asp:Panel ID="pnlUserOptions" runat="server" Visible="False">
+              Здравей :
+              <asp:HyperLink ID="hlUserLink" runat="server">Username</asp:HyperLink>
+
+              &nbsp;,&nbsp;
+
+              <asp:LinkButton ID="lbLogOut" runat="server" onclick="lbLogOut_Click">изход</asp:LinkButton>
+              &nbsp;&nbsp;
+            </asp:Panel>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="Black" colspan=2>
+                
+                <table style="width:100%;">
+                <tr>
+                <td style="width: 120px;" align="center">
+                <asp:HyperLink ID="hlHome" runat="server" NavigateUrl="~/Home.aspx" 
+                        CssClass="headerLinks" Font-Bold="True" ForeColor="White">Начало</asp:HyperLink>
+                </td>
+                <td align="center">
+                
+                 <asp:HyperLink ID="hlAll" runat="server" CssClass="headerLinks" 
+                        NavigateUrl="~/Album.aspx?cat=1">всички</asp:HyperLink>
+                    <asp:HyperLink ID="hlNature" runat="server" CssClass="headerLinks" 
+                        NavigateUrl="~/Album.aspx?cat=16">природа</asp:HyperLink>
+                    <asp:HyperLink ID="hlAnimals" runat="server" CssClass="headerLinks" 
+                        NavigateUrl="~/Album.aspx?cat=17">животни</asp:HyperLink>
+                    <asp:HyperLink ID="hlArt" runat="server" CssClass="headerLinks" 
+                        NavigateUrl="~/Album.aspx?cat=18">изкуство</asp:HyperLink>
+                    <asp:HyperLink ID="hlPeople" runat="server" CssClass="headerLinks" 
+                        NavigateUrl="~/Album.aspx?cat=19">хора</asp:HyperLink>
+                    <asp:HyperLink ID="hlSpace" runat="server" CssClass="headerLinks" 
+                        NavigateUrl="~/Album.aspx?cat=20">космос</asp:HyperLink>
+                    <asp:HyperLink ID="hlAbstract" runat="server" CssClass="headerLinks" 
+                        NavigateUrl="~/Album.aspx?cat=21">абстрактни</asp:HyperLink>
+                    <asp:HyperLink ID="hlSports" runat="server" CssClass="headerLinks" 
+                        NavigateUrl="~/Album.aspx?cat=22">спорт</asp:HyperLink>
+                    <asp:HyperLink ID="hlCars" runat="server" CssClass="headerLinks" 
+                        NavigateUrl="~/Album.aspx?cat=23">коли</asp:HyperLink>
+                
+                </td>
+                <td style="width: 160px;" align="right">
+                
+                     <asp:Panel ID="pnlSearch" runat="server" DefaultButton="imgSearch" style="display:inline">
+                        <asp:RequiredFieldValidator ID="rfvSearch" runat="server" 
+            ControlToValidate="tbSearch" ValidationGroup="99"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="tbSearch" runat="server" ValidationGroup="99" Columns="15" Width="120px"></asp:TextBox>
+                        <cc1:TextBoxWatermarkExtender ID="tbSearch_TextBoxWatermarkExtender" 
+                            runat="server" TargetControlID="tbSearch" WatermarkText=" потребител">
+                        </cc1:TextBoxWatermarkExtender>
+                        <asp:ImageButton ID="imgSearch" runat="server" 
+                            ValidationGroup="99" Height="26px" ImageAlign="AbsMiddle" 
+                            ImageUrl="~/images/search.png" onclick="imgSearch_Click" />
+                    </asp:Panel>
+                
+                </td>
+                </tr>
+                </table>
+                
+                    
+                    
+                    
+                    
+                
+                    
+                                       
+                    
+                    
+                    
+               
+                   
+                </td>
+            </tr>
+        </table>
+        <hr style="margin-top: 0px; margin-bottom: 0px;" />
+        <table class="rightBgr" 
+            style="border-collapse: collapse; border-spacing: 0px; width: 100%; background-color: #2A2A2A;">
+            <tr>
+                <td style="width: 200px; padding-left: 2px;" valign="top" class="menuBgr">
+                
+        <asp:HyperLink ID="hlAlbum" runat="server" NavigateUrl="~/Album.aspx" style="margin-left:10px;" 
+                        Font-Bold="True" ForeColor="White">Моят албум</asp:HyperLink>
+
+                    <asp:Panel ID="pnlVisitedUser" runat="server">
+                        <div style="text-align:center">
+                            Вие гледате албума на :</div>
+                        <table class="statisticsTable">
+                            <tr>
+                                <td>
+                                    <asp:Image ID="imgVisUser" runat="server" Height="20px" 
+                                        ImageUrl="~/images/visits.png" />
+                                </td>
+                                <td>
+                                    &nbsp;<asp:HyperLink ID="hlVisitedUser" runat="server">HyperLink</asp:HyperLink>
+                                </td>
+                            </tr>
+                        </table>
+                        &nbsp;<div style="text-align:center">
+                            Неговите категории :</div>
+                        <asp:Table ID="tblVisitedCategories" runat="server">
+                        </asp:Table>
+                        <hr style="width: 80%;" runat="server" ID="hrVisiting" />
+                    </asp:Panel>
+
+                 <asp:Panel ID="pnlCurrUser" runat="server">
+
+                    <asp:Panel ID="pnlMyCategories" runat="server">
+                    <div style="text-align:center">Моите категории</div>
+                        <asp:Table ID="tblCategories" runat="server" CssClass="autoWidth">
+                        </asp:Table>
+                    
+                    </asp:Panel>
+
+                   
+                        <div style="text-align:center">Настройки</div>
+                        <img align="middle" alt="" src="images/gear.png" width="20" /><asp:HyperLink ID="hlEditProfile" runat="server">промяна профил</asp:HyperLink>
+                        <br />
+                        <img align="middle" alt="" src="images/gear.png" width="20" /><asp:HyperLink ID="hlAddImage" runat="server" NavigateUrl="~/AddImage.aspx">добави картинка</asp:HyperLink>
+                        <br />
+                        <img align="middle" alt="" src="images/gear.png" width="20" /><asp:HyperLink ID="hlEditCategory" runat="server" 
+                            NavigateUrl="~/EditCategory.aspx">промяна категории</asp:HyperLink>
+                    </asp:Panel>
+                </td>
+                <td valign="top">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        
+                </td>
+            </tr>
+        </table>
+        
+        </div>
+        
+        
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GalleryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="GalleryModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="GalleryModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ImageComments" EntityType="GalleryModel.Store.ImageComments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ImageRatings" EntityType="GalleryModel.Store.ImageRatings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Images" EntityType="GalleryModel.Store.Images" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ImageVisits" EntityType="GalleryModel.Store.ImageVisits" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="GalleryModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Categories_Users" Association="GalleryModel.Store.FK_Categories_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageComments_Image" Association="GalleryModel.Store.FK_ImageComments_Image">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ImageComments" EntitySet="ImageComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageComments_User" Association="GalleryModel.Store.FK_ImageComments_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ImageComments" EntitySet="ImageComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageRatings_Image" Association="GalleryModel.Store.FK_ImageRatings_Image">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ImageRatings" EntitySet="ImageRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageRatings_User" Association="GalleryModel.Store.FK_ImageRatings_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ImageRatings" EntitySet="ImageRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_Category" Association="GalleryModel.Store.FK_Images_Category">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_User" Association="GalleryModel.Store.FK_Images_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageVisits_Image" Association="GalleryModel.Store.FK_ImageVisits_Image">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ImageVisits" EntitySet="ImageVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageVisits_User" Association="GalleryModel.Store.FK_ImageVisits_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ImageVisits" EntitySet="ImageVisits" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ForUser" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="300" />
+          <Property Name="IsPrimary" Type="bit" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ImageComments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="bigint" Nullable="false" />
+          <Property Name="Image" Type="bigint" Nullable="false" />
+          <Property Name="dateWritten" Type="datetime" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImageRatings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="bigint" Nullable="false" />
+          <Property Name="Image" Type="bigint" Nullable="false" />
+          <Property Name="rating" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="bigint" Nullable="false" />
+          <Property Name="image" Type="image" Nullable="false" />
+          <Property Name="InCategory" Type="bigint" Nullable="false" />
+          <Property Name="dateUploaded" Type="datetime" Nullable="false" />
+          <Property Name="liked" Type="bigint" Nullable="false" />
+          <Property Name="disliked" Type="bigint" Nullable="false" />
+          <Property Name="visits" Type="bigint" Nullable="false" />
+          <Property Name="commens" Type="bigint" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="thumbnail" Type="image" />
+        </EntityType>
+        <EntityType Name="ImageVisits">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="bigint" Nullable="false" />
+          <Property Name="Image" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="dateRegistered" Type="datetime" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="300" />
+          <Property Name="city" Type="nvarchar" MaxLength="300" />
+          <Property Name="birthdate" Type="datetime" />
+          <Property Name="email" Type="nvarchar" MaxLength="300" />
+          <Property Name="moreInfo" Type="nvarchar(max)" />
+          <Property Name="avatar" Type="image" />
+        </EntityType>
+        <Association Name="FK_Categories_Users">
+          <End Role="Users" Type="GalleryModel.Store.Users" Multiplicity="1" />
+          <End Role="Categories" Type="GalleryModel.Store.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="ForUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageComments_Image">
+          <End Role="Images" Type="GalleryModel.Store.Images" Multiplicity="1" />
+          <End Role="ImageComments" Type="GalleryModel.Store.ImageComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImageComments">
+              <PropertyRef Name="Image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageComments_User">
+          <End Role="Users" Type="GalleryModel.Store.Users" Multiplicity="1" />
+          <End Role="ImageComments" Type="GalleryModel.Store.ImageComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImageComments">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageRatings_Image">
+          <End Role="Images" Type="GalleryModel.Store.Images" Multiplicity="1" />
+          <End Role="ImageRatings" Type="GalleryModel.Store.ImageRatings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImageRatings">
+              <PropertyRef Name="Image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageRatings_User">
+          <End Role="Users" Type="GalleryModel.Store.Users" Multiplicity="1" />
+          <End Role="ImageRatings" Type="GalleryModel.Store.ImageRatings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImageRatings">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_Category">
+          <End Role="Categories" Type="GalleryModel.Store.Categories" Multiplicity="1" />
+          <End Role="Images" Type="GalleryModel.Store.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="InCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_User">
+          <End Role="Users" Type="GalleryModel.Store.Users" Multiplicity="1" />
+          <End Role="Images" Type="GalleryModel.Store.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageVisits_Image">
+          <End Role="Images" Type="GalleryModel.Store.Images" Multiplicity="1" />
+          <End Role="ImageVisits" Type="GalleryModel.Store.ImageVisits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImageVisits">
+              <PropertyRef Name="Image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageVisits_User">
+          <End Role="Users" Type="GalleryModel.Store.Users" Multiplicity="1" />
+          <End Role="ImageVisits" Type="GalleryModel.Store.ImageVisits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImageVisits">
+              <PropertyRef Name="User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GalleryModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="Entities">
+          <EntitySet Name="CategorySet" EntityType="GalleryModel.Category" />
+          <EntitySet Name="ImageCommentSet" EntityType="GalleryModel.ImageComment" />
+          <EntitySet Name="ImageRatingSet" EntityType="GalleryModel.ImageRating" />
+          <EntitySet Name="ImageSet" EntityType="GalleryModel.Image" />
+          <EntitySet Name="ImageVisitSet" EntityType="GalleryModel.ImageVisit" />
+          <EntitySet Name="UserSet" EntityType="GalleryModel.User" />
+          <AssociationSet Name="FK_Categories_Users" Association="GalleryModel.FK_Categories_Users">
+            <End Role="Users" EntitySet="UserSet" />
+            <End Role="Categories" EntitySet="CategorySet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_Category" Association="GalleryModel.FK_Images_Category">
+            <End Role="Categories" EntitySet="CategorySet" />
+            <End Role="Images" EntitySet="ImageSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageComments_Image" Association="GalleryModel.FK_ImageComments_Image">
+            <End Role="Images" EntitySet="ImageSet" />
+            <End Role="ImageComments" EntitySet="ImageCommentSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageComments_User" Association="GalleryModel.FK_ImageComments_User">
+            <End Role="Users" EntitySet="UserSet" />
+            <End Role="ImageComments" EntitySet="ImageCommentSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageRatings_Image" Association="GalleryModel.FK_ImageRatings_Image">
+            <End Role="Images" EntitySet="ImageSet" />
+            <End Role="ImageRatings" EntitySet="ImageRatingSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageRatings_User" Association="GalleryModel.FK_ImageRatings_User">
+            <End Role="Users" EntitySet="UserSet" />
+            <End Role="ImageRatings" EntitySet="ImageRatingSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_User" Association="GalleryModel.FK_Images_User">
+            <End Role="Users" EntitySet="UserSet" />
+            <End Role="Images" EntitySet="ImageSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageVisits_Image" Association="GalleryModel.FK_ImageVisits_Image">
+            <End Role="Images" EntitySet="ImageSet" />
+            <End Role="ImageVisits" EntitySet="ImageVisitSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageVisits_User" Association="GalleryModel.FK_ImageVisits_User">
+            <End Role="Users" EntitySet="UserSet" />
+            <End Role="ImageVisits" EntitySet="ImageVisitSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="IsPrimary" Type="Boolean" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="GalleryModel.FK_Categories_Users" FromRole="Categories" ToRole="Users" />
+          <NavigationProperty Name="Images" Relationship="GalleryModel.FK_Images_Category" FromRole="Categories" ToRole="Images" />
+        </EntityType>
+        <EntityType Name="ImageComment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="dateWritten" Type="DateTime" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Image" Relationship="GalleryModel.FK_ImageComments_Image" FromRole="ImageComments" ToRole="Images" />
+          <NavigationProperty Name="User" Relationship="GalleryModel.FK_ImageComments_User" FromRole="ImageComments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ImageRating">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="rating" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Image" Relationship="GalleryModel.FK_ImageRatings_Image" FromRole="ImageRatings" ToRole="Images" />
+          <NavigationProperty Name="User" Relationship="GalleryModel.FK_ImageRatings_User" FromRole="ImageRatings" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="dateUploaded" Type="DateTime" Nullable="false" />
+          <Property Name="liked" Type="Int64" Nullable="false" />
+          <Property Name="disliked" Type="Int64" Nullable="false" />
+          <Property Name="visits" Type="Int64" Nullable="false" />
+          <Property Name="commens" Type="Int64" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Category" Relationship="GalleryModel.FK_Images_Category" FromRole="Images" ToRole="Categories" />
+          <NavigationProperty Name="ImageComments" Relationship="GalleryModel.FK_ImageComments_Image" FromRole="Images" ToRole="ImageComments" />
+          <NavigationProperty Name="ImageRatings" Relationship="GalleryModel.FK_ImageRatings_Image" FromRole="Images" ToRole="ImageRatings" />
+          <NavigationProperty Name="User" Relationship="GalleryModel.FK_Images_User" FromRole="Images" ToRole="Users" />
+          <NavigationProperty Name="ImageVisits" Relationship="GalleryModel.FK_ImageVisits_Image" FromRole="Images" ToRole="ImageVisits" />
+          <Property Name="thumbnail" Type="Binary" Nullable="true" /></EntityType>
+        <EntityType Name="ImageVisit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Image" Relationship="GalleryModel.FK_ImageVisits_Image" FromRole="ImageVisits" ToRole="Images" />
+          <NavigationProperty Name="User" Relationship="GalleryModel.FK_ImageVisits_User" FromRole="ImageVisits" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="dateRegistered" Type="DateTime" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="city" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="birthdate" Type="DateTime" />
+          <Property Name="email" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="moreInfo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Categories" Relationship="GalleryModel.FK_Categories_Users" FromRole="Users" ToRole="Categories" />
+          <NavigationProperty Name="ImageComments" Relationship="GalleryModel.FK_ImageComments_User" FromRole="Users" ToRole="ImageComments" />
+          <NavigationProperty Name="ImageRatings" Relationship="GalleryModel.FK_ImageRatings_User" FromRole="Users" ToRole="ImageRatings" />
+          <NavigationProperty Name="Images" Relationship="GalleryModel.FK_Images_User" FromRole="Users" ToRole="Images" />
+          <NavigationProperty Name="ImageVisits" Relationship="GalleryModel.FK_ImageVisits_User" FromRole="Users" ToRole="ImageVisits" />
+        </EntityType>
+        <Association Name="FK_Categories_Users">
+          <End Role="Users" Type="GalleryModel.User" Multiplicity="1" />
+          <End Role="Categories" Type="GalleryModel.Category" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Images_Category">
+          <End Role="Categories" Type="GalleryModel.Category" Multiplicity="1" />
+          <End Role="Images" Type="GalleryModel.Image" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ImageComments_Image">
+          <End Role="Images" Type="GalleryModel.Image" Multiplicity="1" />
+          <End Role="ImageComments" Type="GalleryModel.ImageComment" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ImageComments_User">
+          <End Role="Users" Type="GalleryModel.User" Multiplicity="1" />
+          <End Role="ImageComments" Type="GalleryModel.ImageComment" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ImageRatings_Image">
+          <End Role="Images" Type="GalleryModel.Image" Multiplicity="1" />
+          <End Role="ImageRatings" Type="GalleryModel.ImageRating" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ImageRatings_User">
+          <End Role="Users" Type="GalleryModel.User" Multiplicity="1" />
+          <End Role="ImageRatings" Type="GalleryModel.ImageRating" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Images_User">
+          <End Role="Users" Type="GalleryModel.User" Multiplicity="1" />
+          <End Role="Images" Type="GalleryModel.Image" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ImageVisits_Image">
+          <End Role="Images" Type="GalleryModel.Image" Multiplicity="1" />
+          <End Role="ImageVisits" Type="GalleryModel.ImageVisit" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ImageVisits_User">
+          <End Role="Users" Type="GalleryModel.User" Multiplicity="1" />
+          <End Role="ImageVisits" Type="GalleryModel.ImageVisit" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="GalleryModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="CategorySet">
+            <EntityTypeMapping TypeName="IsTypeOf(GalleryModel.Category)">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageCommentSet">
+            <EntityTypeMapping TypeName="IsTypeOf(GalleryModel.ImageComment)">
+              <MappingFragment StoreEntitySet="ImageComments">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="dateWritten" ColumnName="dateWritten" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageRatingSet">
+            <EntityTypeMapping TypeName="IsTypeOf(GalleryModel.ImageRating)">
+              <MappingFragment StoreEntitySet="ImageRatings">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageSet">
+            <EntityTypeMapping TypeName="IsTypeOf(GalleryModel.Image)">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="dateUploaded" ColumnName="dateUploaded" />
+                <ScalarProperty Name="liked" ColumnName="liked" />
+                <ScalarProperty Name="disliked" ColumnName="disliked" />
+                <ScalarProperty Name="visits" ColumnName="visits" />
+                <ScalarProperty Name="commens" ColumnName="commens" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageVisitSet">
+            <EntityTypeMapping TypeName="IsTypeOf(GalleryModel.ImageVisit)">
+              <MappingFragment StoreEntitySet="ImageVisits">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSet">
+            <EntityTypeMapping TypeName="IsTypeOf(GalleryModel.User)">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="dateRegistered" ColumnName="dateRegistered" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="moreInfo" ColumnName="moreInfo" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Categories_Users" TypeName="GalleryModel.FK_Categories_Users" StoreEntitySet="Categories">
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="ForUser" />
+            </EndProperty>
+            <EndProperty Name="Categories">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Images_Category" TypeName="GalleryModel.FK_Images_Category" StoreEntitySet="Images">
+            <EndProperty Name="Categories">
+              <ScalarProperty Name="ID" ColumnName="InCategory" />
+            </EndProperty>
+            <EndProperty Name="Images">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ImageComments_Image" TypeName="GalleryModel.FK_ImageComments_Image" StoreEntitySet="ImageComments">
+            <EndProperty Name="Images">
+              <ScalarProperty Name="ID" ColumnName="Image" />
+            </EndProperty>
+            <EndProperty Name="ImageComments">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ImageComments_User" TypeName="GalleryModel.FK_ImageComments_User" StoreEntitySet="ImageComments">
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="User" />
+            </EndProperty>
+            <EndProperty Name="ImageComments">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ImageRatings_Image" TypeName="GalleryModel.FK_ImageRatings_Image" StoreEntitySet="ImageRatings">
+            <EndProperty Name="Images">
+              <ScalarProperty Name="ID" ColumnName="Image" />
+            </EndProperty>
+            <EndProperty Name="ImageRatings">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ImageRatings_User" TypeName="GalleryModel.FK_ImageRatings_User" StoreEntitySet="ImageRatings">
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="User" />
+            </EndProperty>
+            <EndProperty Name="ImageRatings">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Images_User" TypeName="GalleryModel.FK_Images_User" StoreEntitySet="Images">
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="User" />
+            </EndProperty>
+            <EndProperty Name="Images">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ImageVisits_Image" TypeName="GalleryModel.FK_ImageVisits_Image" StoreEntitySet="ImageVisits">
+            <EndProperty Name="Images">
+              <ScalarProperty Name="ID" ColumnName="Image" />
+            </EndProperty>
+            <EndProperty Name="ImageVisits">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ImageVisits_User" TypeName="GalleryModel.FK_ImageVisits_User" StoreEntitySet="ImageVisits">
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="User" />
+            </EndProperty>
+            <EndProperty Name="ImageVisits">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="GalleryModel">
+        <EntityTypeShape EntityType="GalleryModel.Category" Width="1.5" PointX="3" PointY="3.5" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GalleryModel.ImageComment" Width="1.875" PointX="7.5" PointY="6.625" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="GalleryModel.ImageRating" Width="1.5" PointX="7.5" PointY="0.75" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="GalleryModel.Image" Width="1.5" PointX="5.25" PointY="2.875" Height="3.5186979166666652" IsExpanded="true" />
+        <EntityTypeShape EntityType="GalleryModel.ImageVisit" Width="1.5" PointX="7.5" PointY="3.875" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GalleryModel.User" Width="1.5" PointX="0.75" PointY="2.625" Height="3.9033007812499987" IsExpanded="true" />
+        <AssociationConnector Association="GalleryModel.FK_Categories_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.5862939453125" />
+          <ConnectorPoint PointX="3" PointY="4.5862939453125" /></AssociationConnector>
+        <AssociationConnector Association="GalleryModel.FK_Images_Category" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.5862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="4.5862939453125" /></AssociationConnector>
+        <AssociationConnector Association="GalleryModel.FK_ImageComments_Image" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="3.34375" />
+          <ConnectorPoint PointX="9.0260391666666653" PointY="3.3437499999999996" />
+          <ConnectorPoint PointX="9.1927058333333331" PointY="3.34375" />
+          <ConnectorPoint PointX="9.21875" PointY="3.34375" />
+          <ConnectorPoint PointX="9.21875" PointY="6.625" />
+          </AssociationConnector>
+        <AssociationConnector Association="GalleryModel.FK_ImageComments_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.6718750000000004" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="2.671875" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="2.6718750000000004" />
+          <ConnectorPoint PointX="9.1093725" PointY="2.6718750000000004" />
+          <ConnectorPoint PointX="9.1093725" PointY="6.625" /></AssociationConnector>
+        <AssociationConnector Association="GalleryModel.FK_ImageRatings_Image" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="2.875" />
+          <ConnectorPoint PointX="6" PointY="1.6439925130208333" />
+          <ConnectorPoint PointX="7.5" PointY="1.6439925130208333" /></AssociationConnector>
+        <AssociationConnector Association="GalleryModel.FK_ImageRatings_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="2.625" />
+          <ConnectorPoint PointX="1.5" PointY="2.1222412695312496" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="2.1222412695312491" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="2.1222412695312496" />
+          <ConnectorPoint PointX="7.5" PointY="2.1222412695312496" /></AssociationConnector>
+        <AssociationConnector Association="GalleryModel.FK_Images_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.0643929036458326" />
+          <ConnectorPoint PointX="5.25" PointY="6.0643929036458326" /></AssociationConnector>
+        <AssociationConnector Association="GalleryModel.FK_ImageVisits_Image" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="4.672841796875" />
+          <ConnectorPoint PointX="7.5" PointY="4.672841796875" /></AssociationConnector>
+        <AssociationConnector Association="GalleryModel.FK_ImageVisits_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.4922493489583317" />
+          <ConnectorPoint PointX="8.25" PointY="6.4922493489583317" />
+          <ConnectorPoint PointX="8.25" PointY="5.47068359375" />
+          </AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
