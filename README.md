@@ -2,6 +2,8 @@
 
 ### About
 
+March 2010
+
 Web gallery with the following features: registration, images upload, per user categories/albums for images, images comments/ratings/visits, search for users.. Interface language is Bulgarian.
 
 It is my first .NET web site developed for 2-3 weeks. It was made for university course project and was also presented as diploma thesis. 
